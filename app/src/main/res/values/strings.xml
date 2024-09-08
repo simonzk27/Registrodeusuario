@@ -1,0 +1,9 @@
+<resources>
+    <string name="registro_usuarios">Registro de usuarios</string>
+    <string name="username_hint">Ingrese su nombre de usuario</string>
+    <string name="email_hint">Ingrese su correo</string>
+    <string name="first_name_hint">Ingrese su nombre</string>
+    <string name="last_name_hint">Ingrese su apellido</string>
+    <string name="password_hint">Ingrese su contraseña</string>
+    <string name="password_hint2">Confirme su contraseña</string>
+</resources>
