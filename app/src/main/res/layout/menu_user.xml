@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    tools:context=".MenuAdmin">
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Haz iniciado sesion como USUARIO"
+        android:textSize="24sp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/colorAccent"
+        android:textAlignment="center"
+        />
+
+    <Button
+        android:id="@+id/buttonPropuestas"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:textSize="22sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="200dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/proposals_list" />
+
+    <Button
+        android:id="@+id/buttonMaps"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:textSize="22sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/maps" />
+
+    <Button
+        android:id="@+id/buttonResults"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:textSize="22sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/results" />
+
+
+</LinearLayout>

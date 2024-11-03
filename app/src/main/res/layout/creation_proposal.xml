@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30dp"
+        android:orientation="vertical"
+        tools:context="com.example.registrodeusuario.CreationProposal">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/creation_proposal"
+            android:textSize="24sp"
+            android:layout_marginBottom="20dp" />
+
+        <EditText
+            android:id="@+id/proposal_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/Introduce_proposal"
+            android:padding="10dp"
+            android:layout_margin="8dp"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:id="@+id/proposal_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/proposal_description"
+            android:textSize="18sp"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:id="@+id/proposal_description_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/introduce_proposal_description"
+            android:padding="10dp"
+            android:layout_margin="8dp"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:id="@+id/locality"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/locality"
+            android:textSize="18sp"
+            android:layout_marginBottom="10dp" />
+
+        <Spinner
+            android:id="@+id/locality_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginBottom="20dp"
+            android:entries="@array/locality_array" />
+
+        <TextView
+            android:id="@+id/proposal_duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/proposal_duration"
+            android:textSize="18sp"
+            android:layout_marginBottom="10dp" />
+
+        <Spinner
+            android:id="@+id/proposal_duration_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginBottom="20dp"
+            android:entries="@array/proposal_duration_array" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Proposal"
+            android:backgroundTint="@color/colorAccent"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+</ScrollView>

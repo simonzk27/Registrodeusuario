@@ -1,9 +1,59 @@
 <resources>
-    <string name="registro_usuarios">Registro de usuarios</string>
-    <string name="username_hint">Ingrese su nombre de usuario</string>
-    <string name="email_hint">Ingrese su correo</string>
-    <string name="first_name_hint">Ingrese su nombre</string>
-    <string name="last_name_hint">Ingrese su apellido</string>
-    <string name="password_hint">Ingrese su contraseña</string>
-    <string name="password_hint2">Confirme su contraseña</string>
+    <string name="app_name">Voting System</string>
+    <string name="iniciar_sesion">Login</string>
+    <string name="registrarse">Register</string>
+    <string name="registro_usuario">User Register</string>
+    <string name="username_hint">Enter User Name</string>
+    <string name="last_name_hint">Enter Last Name</string>
+    <string name="email_hint">Enter eMail</string>
+    <string name="first_name_hint">Enter First Name</string>
+    <string name="password_hint">Enter Password</string>
+    <string name="password_hint2">Enter Confirm Password</string>
+    <string name="proposals_list">Proposals List</string>
+    <string name="results">Results</string>
+    <string name="users_list">Users List</string>
+    <string name="proposals_creation">Proposal Creation</string>
+    <string name="creation_proposal">Proposal Name</string>
+    <string name="Introduce_proposal">Introduce Proposal Name</string>
+    <string name="introduce_proposal_description">Introduce Proposal Description</string>
+    <string name="proposal_description">Proposal Description</string>
+    <string name="locality">Proposal Locality</string>
+    <string name="author">Author</string>
+    <string name="proposal_duration">Proposal Duration</string>
+    <string name="restart_votes">Restart Votes</string>
+    <string name="old_proposals">Old Proposals</string>
+    <string name="maps">Maps</string>
+    <string-array name="locality_array">
+        <item>Usaquén</item>
+        <item>Chapinero</item>
+        <item>Santa Fe</item>
+        <item>San Cristóbal</item>
+        <item>Usme</item>
+        <item>Tunjuelito</item>
+        <item>Bosa</item>
+        <item>Kennedy</item>
+        <item>Fontibón</item>
+        <item>Engativá</item>
+        <item>Suba</item>
+        <item>Barrios Unidos</item>
+        <item>Teusaquillo</item>
+        <item>Los Mártires</item>
+        <item>Antonio Nariño</item>
+        <item>Puente Aranda</item>
+        <item>La Candelaria</item>
+        <item>Rafael Uribe Uribe</item>
+        <item>Ciudad Bolívar</item>
+        <item>Sumapaz</item>
+    </string-array>
+    <string-array name="proposal_duration_array">
+        <item>0-1 años</item>
+        <item>1-2 años</item>
+        <item>2-3 años</item>
+        <item>3-4 años</item>
+        <item>4-5 años</item>
+    </string-array>
+    <string-array name="roles_array">
+        <item>Admin</item>
+        <item>Ciudadano</item>
+    </string-array>
 </resources>
