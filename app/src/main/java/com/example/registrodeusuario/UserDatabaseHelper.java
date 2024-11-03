@@ -180,9 +180,9 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         );
     }
 
-    public Map<String, Integer> getLocalities() {
+    public Map<String, Integer> getLocalitiesWithStatus(int status) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT " + COLUMN_PROPOSAL_LOCALITY + ", COUNT(*) as count FROM " + TABLE_PROPOSALS + " GROUP BY " + COLUMN_PROPOSAL_LOCALITY, null);
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_PROPOSAL_LOCALITY + ", COUNT(*) as count FROM " + TABLE_PROPOSALS + " WHERE " + COLUMN_PROPOSAL_STATUS + " = ? GROUP BY " + COLUMN_PROPOSAL_LOCALITY, new String[]{String.valueOf(status)});
 
         Map<String, Integer> localities = new HashMap<>();
         if (cursor != null) {

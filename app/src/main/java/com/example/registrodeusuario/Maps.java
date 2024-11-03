@@ -73,7 +73,7 @@ public class Maps extends AppCompatActivity implements OnMapReadyCallback {
         }
 
         // Get localities from the database
-        Map<String, Integer> localities = dbHelper.getLocalities();
+        Map<String, Integer> localities = dbHelper.getLocalitiesWithStatus(1);
 
         // Add markers to the map
         for (Map.Entry<String, Integer> entry : localities.entrySet()) {
@@ -98,7 +98,6 @@ public class Maps extends AppCompatActivity implements OnMapReadyCallback {
                     .addOnSuccessListener(this, location -> {
                         if (location != null) {
                             LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15));
                             mMap.addMarker(new MarkerOptions()
                                     .position(currentLocation)
                                     .title("Current Location")
@@ -122,13 +121,11 @@ public class Maps extends AppCompatActivity implements OnMapReadyCallback {
         ArrayList<String> localitiesList = new ArrayList<>();
         localitiesList.add("Localities"); // Add default item
 
-        Cursor cursor = dbHelper.getReadableDatabase().rawQuery("SELECT DISTINCT " + UserDatabaseHelper.COLUMN_PROPOSAL_LOCALITY + " FROM " + UserDatabaseHelper.TABLE_PROPOSALS, null);
-        if (cursor != null) {
-            while (cursor.moveToNext()) {
-                String locality = cursor.getString(cursor.getColumnIndexOrThrow(UserDatabaseHelper.COLUMN_PROPOSAL_LOCALITY));
-                localitiesList.add(locality);
-            }
-            cursor.close();
+        // Get localities with proposal_status = 1
+        Map<String, Integer> localities = dbHelper.getLocalitiesWithStatus(1);
+
+        for (String locality : localities.keySet()) {
+            localitiesList.add(locality);
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, localitiesList);
