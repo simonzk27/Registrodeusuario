@@ -74,6 +74,11 @@ public class CreationProposal extends AppCompatActivity {
                 System.out.println("CreationProposal " + "Error al insertar en la base de datos");
             } else {
                 Toast.makeText(this, "Propuesta creada exitosamente", Toast.LENGTH_SHORT).show();
+
+                // Enviar notificación
+                Intent notificationIntent = new Intent(this, DelayedMessageService.class);
+                notificationIntent.putExtra(DelayedMessageService.EXTRA_MESSAGE, getResources().getString(R.string.response));
+                startService(notificationIntent);
             }
         } catch (Exception e) {
             System.out.println("CreationProposal " + "Error al crear la propuesta");

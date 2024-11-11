@@ -23,6 +23,8 @@
     <string name="restart_votes">Restart Votes</string>
     <string name="old_proposals">Old Proposals</string>
     <string name="maps">Maps</string>
+    <string name="question">Votation News</string>
+    <string name="response">New Proposal Created!</string>
     <string-array name="locality_array">
         <item>Usaquén</item>
         <item>Chapinero</item>
