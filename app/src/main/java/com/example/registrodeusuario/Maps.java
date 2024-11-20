@@ -1,12 +1,21 @@
 package com.example.registrodeusuario;
 
 import android.Manifest;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import androidx.activity.EdgeToEdge;
+import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -20,27 +29,33 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.maps.GeoApiContext;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import android.database.Cursor;
 
 public class Maps extends AppCompatActivity implements OnMapReadyCallback {
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private UserDatabaseHelper dbHelper;
     private Spinner spinnerLocalities;
+    private TextView textViewDistance;
     private FusedLocationProviderClient fusedLocationClient;
     private GoogleMap mMap;
+
+    private boolean bound = false;
+    private GeoApiContext geoApiContext;
+    private Map<String, LatLng> localityCoordinates = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.maps_activity);
 
         dbHelper = new UserDatabaseHelper(this);
         spinnerLocalities = findViewById(R.id.spinnerLocalities);
+        textViewDistance = findViewById(R.id.textViewDistance);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         // Initialize the map fragment
@@ -50,8 +65,24 @@ public class Maps extends AppCompatActivity implements OnMapReadyCallback {
             mapFragment.getMapAsync(this);
         }
 
+        // Initialize GeoApiContext
+        geoApiContext = new GeoApiContext.Builder()
+                .apiKey(getString(R.string.google_maps_key))
+                .build();
+
         // Load localities into the Spinner
         loadLocalities();
+
+    }
+
+
+
+
+
+    public LatLng UbicationActually() {
+        double latitude = 4.7465957678842114;
+        double longitude = -74.03092034568157;
+        return new LatLng(latitude, longitude);
     }
 
     @Override
@@ -86,36 +117,37 @@ public class Maps extends AppCompatActivity implements OnMapReadyCallback {
             if (latLng != null) {
                 mMap.addMarker(new MarkerOptions()
                         .position(latLng)
-                        .title(locality + " (" + count + ")"));
+                        .title(locality)
+                        .snippet("Proposals: " + count)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
             }
         }
     }
 
     private void enableMyLocation() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            mMap.setMyLocationEnabled(true);
-            fusedLocationClient.getLastLocation()
-                    .addOnSuccessListener(this, location -> {
-                        if (location != null) {
-                            LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
-                            mMap.addMarker(new MarkerOptions()
-                                    .position(currentLocation)
-                                    .title("Current Location")
-                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-                        }
-                    });
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                enableMyLocation();
+            try {
+                mMap.setMyLocationEnabled(true);
+                fusedLocationClient.getLastLocation()
+                        .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                            @Override
+                            public void onSuccess(Location location) {
+                                // Got last known location. In some rare situations this can be null.
+                                if (location != null) {
+                                    // Logic to handle location object
+                                    LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15));
+                                    mMap.addMarker(new MarkerOptions().position(currentLocation).title("You are here"));
+                                }
+                            }
+                        });
+            } catch (SecurityException e) {
+                e.printStackTrace();
             }
         }
     }
+
+
 
     private void loadLocalities() {
         ArrayList<String> localitiesList = new ArrayList<>();
@@ -139,4 +171,13 @@ public class Maps extends AppCompatActivity implements OnMapReadyCallback {
 
         return localityCoordinates.get(locality);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+    }
+
+
+
 }

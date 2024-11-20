@@ -49,7 +49,18 @@ public class MenuUsuario extends AppCompatActivity {
                 startActivity(resultsIntent);
             }
         });
+
+        // Botón para el mapa
+        Button mapsButton = findViewById(R.id.buttonMaps);
+        mapsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mapsIntent = new Intent(MenuUsuario.this, Maps.class);
+                startActivity(mapsIntent);
+            }
+        });
     }
+
 
     @Override
     public void onBackPressed() {

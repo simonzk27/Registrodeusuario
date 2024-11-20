@@ -25,6 +25,7 @@
     <string name="maps">Maps</string>
     <string name="question">Votation News</string>
     <string name="response">New Proposal Created!</string>
+    <string name="google_maps_key">AIzaSyCChvJYwdeu16x1JGQWXIHifXlMaxbT16g</string>
     <string-array name="locality_array">
         <item>Usaquén</item>
         <item>Chapinero</item>

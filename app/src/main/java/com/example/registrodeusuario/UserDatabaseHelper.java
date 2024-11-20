@@ -74,6 +74,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(TABLE_CREATE_PROPOSALS);
     }
 
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion < 8) {
@@ -195,5 +196,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         }
         return localities;
     }
+
+
 
 }

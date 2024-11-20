@@ -23,6 +23,7 @@
             android:exported="false">
         </service>
 
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCChvJYwdeu16x1JGQWXIHifXlMaxbT16g" />
